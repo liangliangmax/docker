@@ -1,0 +1,29 @@
+FROM ubuntu:16.04
+
+MAINTAINER liang max_translia@126.com
+
+USER root
+
+RUN apt-get update
+
+RUN apt-get upgrade -y
+
+RUN mkdir -p /usr/local/java /root/app/webpurify
+
+ADD jdk-8u151-linux-x64.tar.gz /usr/local/java/
+
+COPY ./webpurify.jar /root/app/webpurify/
+
+COPY ./application.yml /root/app/webpurify/
+
+ENV JAVA_HOME /usr/local/java/jdk1.8.0_151/
+
+ENV PATH $JAVA_HOME/bin:$PATH
+
+RUN java -version
+
+EXPOSE 9990
+
+WORKDIR /root/app/webpurify/
+
+ENTRYPOINT java -jar ./webpurify.jar
