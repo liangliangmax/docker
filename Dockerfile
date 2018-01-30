@@ -1,4 +1,5 @@
 #FROM ubuntu:16.04
+#FROM docker.io/java:openjdk-8u111-jdk-alpine
 
 FROM maxdocker/docker:1.3
 
